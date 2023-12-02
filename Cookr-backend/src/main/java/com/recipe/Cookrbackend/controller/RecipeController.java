@@ -27,11 +27,18 @@ public class RecipeController {
         );
     }
 
-    @GetMapping(path = "all-recipe")
+    @GetMapping(path = "getAll")
     public ResponseEntity<StandardResponse> getAllRecipe(){
         List<RecipeDto> recipeDtoList = recipeService.getAllRecipe();
         return new ResponseEntity<StandardResponse>(
-                new StandardResponse(200,"Success",recipeDtoList), HttpStatus.CREATED
+                new StandardResponse(200,"Success",recipeDtoList), HttpStatus.OK
+        );
+    }
+    @GetMapping(path ="{id}")
+    public ResponseEntity<StandardResponse> recipeGetByID(@PathVariable(value = "id") long id){
+        RecipeDto recipe = recipeService.recipeGetById(id);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"Success",recipe),HttpStatus.OK
         );
     }
 }

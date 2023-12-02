@@ -8,4 +8,6 @@ public interface RecipeService {
     String saveRecipe(RecipeDto recipeDto);
 
     List<RecipeDto> getAllRecipe();
+
+    RecipeDto recipeGetById(long id);
 }
