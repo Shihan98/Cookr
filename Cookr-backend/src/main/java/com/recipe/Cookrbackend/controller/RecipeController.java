@@ -1,6 +1,7 @@
 package com.recipe.Cookrbackend.controller;
 
 import com.recipe.Cookrbackend.dto.RecipeDto;
+import com.recipe.Cookrbackend.entity.Recipe;
 import com.recipe.Cookrbackend.service.RecipeService;
 import com.recipe.Cookrbackend.util.StandardResponse;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,14 @@ public class RecipeController {
         RecipeDto recipe = recipeService.recipeGetById(id);
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(200,"Success",recipe),HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseEntity<StandardResponse> recipeDeleteById(@PathVariable(value = "id") long id){
+        RecipeDto recipe = recipeService.recipeDeleteById(id);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"success",recipe), HttpStatus.OK
         );
     }
 }

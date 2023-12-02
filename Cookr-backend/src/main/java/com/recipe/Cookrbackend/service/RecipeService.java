@@ -10,4 +10,6 @@ public interface RecipeService {
     List<RecipeDto> getAllRecipe();
 
     RecipeDto recipeGetById(long id);
+
+    RecipeDto recipeDeleteById(long id);
 }

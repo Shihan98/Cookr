@@ -52,4 +52,16 @@ public class RecipeServiceImpl implements RecipeService {
             throw new RuntimeException("Not Found");
         }
     }
+
+    @Override
+    public RecipeDto recipeDeleteById(long id) {
+        if(recipeRepo.existsById(id)){
+            Recipe recipe = recipeRepo.getReferenceById(id);
+            recipeRepo.deleteById(id);
+            return modelMapper.map(recipe,RecipeDto.class);
+        }
+        else {
+            throw new RuntimeException("Not Found");
+        }
+    }
 }
