@@ -1,8 +1,7 @@
 package com.recipe.Cookrbackend.dto;
 
-import lombok.*;
 
-import java.security.Timestamp;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeDto {
-    private Long id;
     private String recipeName;
     private String ingredients;
     private String description;
