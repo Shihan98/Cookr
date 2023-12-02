@@ -2,7 +2,9 @@ package com.recipe.Cookrbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "recipe_table")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Recipe {
     @Id
     @Column(name = "recipe_id")
@@ -21,17 +25,17 @@ public class Recipe {
     @Column(name = "recipe_name")
     private String recipeName;
 
-    @Column(name = "recipe_ingredients")
-    private  String ingredients;
+    @Column(name = "ingredients")
+    private String ingredients;
 
-    @Column(name = "recipe_description")
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "create_date")
     @CreationTimestamp
-    @Column(name = "recipe_createDate")
     private LocalDateTime createDate;
 
+    @Column(name = "update_date")
     @UpdateTimestamp
-    @Column(name = "recipe_update")
     private LocalDateTime update;
 }
