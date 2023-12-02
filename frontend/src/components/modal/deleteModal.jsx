@@ -4,9 +4,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
 export default function DeleteModal(recipe) {
-  const { _id, name, ingredients, description } = recipe.recipe;
+  const { id, name, ingredients, description } = recipe.recipe;
   let [isOpen, setIsOpen] = useState(false);
-  let [id, setId] = useState(_id);
+  // let [id, setId] = useState(_id);
 
   function closeModal() {
     setIsOpen(false);
@@ -18,10 +18,10 @@ export default function DeleteModal(recipe) {
   // deletion
   function deleteRecipe() {
     axios
-      .delete(`http://localhost:8080/api/v1/recipe/${id}`)
+      .delete(`http://localhost:8080/api/recipe/delete/${id}`)
       .then((result) => {
         console.log("Recipe deleted successfully");
-        console.log(result);
+        console.log(result.data.data);
         closeModal();
         // reload the window
         window.location.reload();

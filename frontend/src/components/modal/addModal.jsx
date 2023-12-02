@@ -19,7 +19,7 @@ export default function AddModal() {
 
   function createRecipe() {
     axios
-      .post("http://localhost:8080/api/v1/recipe", {
+      .post("http://localhost:8080/api/recipe/save", {
         name: name,
         ingredients: ingredients,
         description: description,

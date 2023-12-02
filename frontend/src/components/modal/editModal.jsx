@@ -8,7 +8,7 @@ export default function EditModal({ recipe }) {
   let [name, setName] = useState(recipe.name);
   let [ingredients, setIngredients] = useState(recipe.ingredients);
   let [description, setDescription] = useState(recipe.description);
-  let [id , setId] = useState(recipe._id);
+  let [id , setId] = useState(recipe.id);
   let [data, setData] = useState();
 
   function closeModal() {
@@ -21,7 +21,8 @@ export default function EditModal({ recipe }) {
 
   function updateRecipe() {
     axios
-      .put(`http://localhost:8080/api/v1/recipe/${id}`, {
+      .put("http://localhost:8080/api/recipe/update", {
+        id:id,
         name: name,
         ingredients: ingredients,
         description: description,

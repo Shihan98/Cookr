@@ -23,7 +23,7 @@ public class Recipe {
     private Long id;
 
     @Column(name = "recipe_name")
-    private String recipeName;
+    private String name;
 
     @Column(name = "ingredients")
     private String ingredients;

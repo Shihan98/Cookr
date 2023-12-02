@@ -1,6 +1,8 @@
 package com.recipe.Cookrbackend.controller;
 
 import com.recipe.Cookrbackend.dto.RecipeDto;
+import com.recipe.Cookrbackend.dto.RecipeResponseDto;
+import com.recipe.Cookrbackend.dto.RecipeUpdateDto;
 import com.recipe.Cookrbackend.entity.Recipe;
 import com.recipe.Cookrbackend.service.RecipeService;
 import com.recipe.Cookrbackend.util.StandardResponse;
@@ -30,7 +32,7 @@ public class RecipeController {
 
     @GetMapping(path = "getAll")
     public ResponseEntity<StandardResponse> getAllRecipe(){
-        List<RecipeDto> recipeDtoList = recipeService.getAllRecipe();
+        List<RecipeResponseDto> recipeDtoList = recipeService.getAllRecipe();
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(200,"Success",recipeDtoList), HttpStatus.OK
         );
@@ -48,6 +50,14 @@ public class RecipeController {
         RecipeDto recipe = recipeService.recipeDeleteById(id);
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(200,"success",recipe), HttpStatus.OK
+        );
+    }
+
+    @PutMapping (path = "update")
+    public ResponseEntity<StandardResponse> recipeUpdate(@RequestBody RecipeUpdateDto recipeUpdateDto){
+        RecipeDto upadteRecipe =  recipeService.recipeUpdate(recipeUpdateDto);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"Updated",upadteRecipe),HttpStatus.OK
         );
     }
 }
