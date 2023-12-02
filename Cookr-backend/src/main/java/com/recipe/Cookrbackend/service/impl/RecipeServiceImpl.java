@@ -1,6 +1,8 @@
 package com.recipe.Cookrbackend.service.impl;
 
 import com.recipe.Cookrbackend.dto.RecipeDto;
+import com.recipe.Cookrbackend.dto.RecipeResponseDto;
+import com.recipe.Cookrbackend.dto.RecipeUpdateDto;
 import com.recipe.Cookrbackend.entity.Recipe;
 import com.recipe.Cookrbackend.repository.RecipeRepo;
 import com.recipe.Cookrbackend.service.RecipeService;
@@ -32,14 +34,51 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<RecipeDto> getAllRecipe() {
+    public List<RecipeResponseDto> getAllRecipe() {
         List<Recipe> allRecipe = recipeRepo.findAll();
         if(!allRecipe.isEmpty()){
-            List<RecipeDto> allRecipeDto = modelMapper.map(allRecipe,new TypeToken<List<RecipeDto>>(){}.getType());
-            return  allRecipeDto;
+            return modelMapper.map(allRecipe,new TypeToken<List<RecipeResponseDto>>(){}.getType());
         }
         else {
             throw new RuntimeException("Not Found");
         }
+    }
+
+    @Override
+    public RecipeDto recipeGetById(long id) {
+        if(recipeRepo.existsById(id)) {
+            Recipe recipe = recipeRepo.getReferenceById(id);
+            return modelMapper.map(recipe,RecipeDto.class);
+        }
+        else {
+            throw new RuntimeException("Not Found");
+        }
+    }
+
+    @Override
+    public RecipeDto recipeDeleteById(long id) {
+        if(recipeRepo.existsById(id)){
+            Recipe recipe = recipeRepo.getReferenceById(id);
+            recipeRepo.deleteById(id);
+            return modelMapper.map(recipe,RecipeDto.class);
+        }
+        else {
+            throw new RuntimeException("Not Found");
+        }
+    }
+
+    @Override
+    public RecipeDto recipeUpdate(RecipeUpdateDto recipeUpdateDto) {
+        if(recipeRepo.existsById(recipeUpdateDto.getId())){
+            Recipe recipe = recipeRepo.getReferenceById(recipeUpdateDto.getId());
+
+            recipe.setName(recipeUpdateDto.getName());
+            recipe.setIngredients(recipeUpdateDto.getIngredients());
+            recipe.setDescription(recipeUpdateDto.getDescription());
+
+            recipeRepo.save(recipe);
+            return modelMapper.map(recipe,RecipeDto.class);
+        }
+        return null;
     }
 }

@@ -7,9 +7,9 @@ export default function RecipeSection() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/recipe")
+      .get("http://localhost:8080/api/recipe/getAll")
       .then((result) => {
-        setdata(result.data);
+        setdata(result.data.data);
       })
       .catch((err) => {
         console.log(err);

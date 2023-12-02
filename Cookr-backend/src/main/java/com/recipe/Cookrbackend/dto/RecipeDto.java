@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeDto {
-    private String recipeName;
+    private String name;
     private String ingredients;
     private String description;
     private LocalDateTime createDate;
