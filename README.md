@@ -28,5 +28,5 @@ npm install
 npm run dev
 ```
 
-**Wire frame design  **
+## Wire frame design
 https://www.figma.com/file/jCIxkalbSGMla00EIXwpQO/Untitled?type=design&node-id=0%3A1&mode=design&t=frvObfzF64mv89zH-1
