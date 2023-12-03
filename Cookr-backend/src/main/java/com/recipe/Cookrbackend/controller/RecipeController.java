@@ -60,4 +60,11 @@ public class RecipeController {
                 new StandardResponse(201,"Updated",upadteRecipe),HttpStatus.OK
         );
     }
+    @GetMapping(path = "getlast")
+    public ResponseEntity<StandardResponse> getLastRecipes(){
+        List<RecipeResponseDto> responseDtoList = recipeService.getLastRecipes();
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"success",responseDtoList),HttpStatus.OK
+        );
+    }
 }

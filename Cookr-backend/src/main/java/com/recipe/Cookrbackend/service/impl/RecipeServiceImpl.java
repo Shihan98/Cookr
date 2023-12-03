@@ -81,4 +81,10 @@ public class RecipeServiceImpl implements RecipeService {
         }
         return null;
     }
+
+    @Override
+    public List<RecipeResponseDto> getLastRecipes() {
+        List<Recipe> recipe = recipeRepo.findTop3ByOrderByCreateDateDesc();
+        return modelMapper.map(recipe,new TypeToken<List<RecipeResponseDto>>(){}.getType());
+    }
 }

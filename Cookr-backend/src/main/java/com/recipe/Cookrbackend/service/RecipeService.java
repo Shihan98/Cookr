@@ -16,4 +16,6 @@ public interface RecipeService {
     RecipeDto recipeDeleteById(long id);
 
     RecipeDto recipeUpdate(RecipeUpdateDto recipeUpdateDto);
+
+    List<RecipeResponseDto> getLastRecipes();
 }
